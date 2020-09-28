@@ -1,6 +1,8 @@
 package file_handling;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import java.io.File;
@@ -66,7 +68,7 @@ import java.io.FileWriter;
 				
 				
 				break;
-			//default:System.out.println("invalid choices...please go to main menu");
+			
 				
 				case 3:System.out.println("display the files in ascending order");
 						File my_file_dir = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");
@@ -74,7 +76,7 @@ import java.io.FileWriter;
 
 							if (my_file_dir.exists()) 
 								{
-								System.out.println("The directory or file exists.\n");
+								
 								System.out.println("files"+my_file_dir.getName());
 								pathnames = my_file_dir.list();
 								Arrays.sort(pathnames);
@@ -89,27 +91,41 @@ import java.io.FileWriter;
 				 {
 				   System.out.println("The directory or file does not exist.\n");
 				 }
-
+							break;
 				case 4:System.out.println("enter the name of file you want to search?");
 						String search_key;
 						search_key = scanner.next();
+						search_key = search_key.concat(".txt");
 				File my_file_direc = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");
 				String path_name [];
+				
 				 
 				   if (my_file_direc.exists()) {
 					   path_name = my_file_direc.list();
-					Arrays.sort(path_name); 
-					 for (String pathname : path_name) {
-						    // Print the names of files and directories
-						    System.out.println(pathname);
-						}
+					   List<String> list = Arrays.asList(path_name);
+					  
+						for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+							
+							
+						
+					
+					   if(list.contains(search_key)) {
+						   System.out.println("file you entered found in the directory");
+						   break;
+						   
+					   }
+					   else 
+						   System.out.println("file you entered not found in the directory ");
+					   		break;
+						    
+					   }
 				   
 				   
-				   
-				  
-				System.out.println("search "+Arrays.binarySearch(path_name, search_key));		
-
 				   }
+				  
+				
+
+				   
 				case 0:System.out.println("Thank you for using our app!!");
 				}
 				
@@ -125,3 +141,4 @@ import java.io.FileWriter;
 		}
 
 	}
+	
