@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 	import java.io.IOException;
@@ -29,12 +32,14 @@ import java.io.FileWriter;
 				System.out.println("press 3 to view the files");
 				System.out.println("press 4 for file searching");
 				System.out.println("press 0 to exit the application ");
-				System.out.println("press 5 to continue");
+				System.out.println("press 5 to view the contents of file");
+				System.out.println("press 6 to continue");
 					try {
 					c =scanner.nextInt();
 				
 					}catch (InputMismatchException e) {
-						System.out.println("please enter a valid input");
+						System.out.println("please enter a valid input!");
+						break;
 					}
 					
 								
@@ -63,9 +68,7 @@ import java.io.FileWriter;
 					
 				}
 				
-				//int ch = Arrays.binarySearch(pathnames, filename);
-			//	if(ch>0)
-			//		System.out.println("file already exist ,please enter another name");
+				
 				
 					   try(FileWriter fw=new FileWriter(filename);
 									
@@ -77,9 +80,10 @@ import java.io.FileWriter;
 								
 								
 								inputString = scanner.next();
+								
 								 bw.write(inputString);
 								
-							
+								
 								System.out.println("Messages written to file successfully");
 								
 								
@@ -90,30 +94,38 @@ import java.io.FileWriter;
 							}
 					   break;
 					
-					
-				   
-					
-				
-				  
 				
 				case 2 :System.out.println("enter the name of the file to be deleted");
-				
+				try {
 				String fn = scanner.next();
 				fn = fn.concat(".txt");
-				System.out.println(fn);
 				
-				File myObj = new File(fn); 
+				File myObj = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file"); 
 				
-				if (myObj.delete()) { 
-				      System.out.println("Deleted the file: " + myObj.getName());
+					String path[];
+				   if (myObj.exists()) {
+					   path = myObj.list();
+					   Arrays.sort(path);
+						int cha = Arrays.binarySearch(path, fn);
+						if(cha>0) {
+							
+							 myObj = new File(fn); 
+							myObj.delete();
+							System.out.println("file found in the  directory ,deleted the file."+myObj.getName());
+							break;
+						}
+						else {
+							System.out.println(" file not exist");
+							break;
+						}
+					
+				   }
 				
+				
+				
+				}catch (Exception e) {
+					System.out.println(e);
 				}
-				else{
-				
-					System.out.println("the file you entered not exist");
-				}
-				
-				
 				break;
 			
 				
@@ -139,6 +151,8 @@ import java.io.FileWriter;
 				   System.out.println("The directory or file does not exist.\n");
 				 }
 							break;
+							
+							
 				case 4:System.out.println("enter the name of file you want to search?");
 						String search_key;
 						
@@ -171,9 +185,31 @@ import java.io.FileWriter;
 					System.out.println("no files in the directory.");
 				}
 
-				   break;  
+				   break;
+				   
+				case 5:System.out.println("enter the file name you wanted to view");
+						String read_file ;
+						
+						read_file = scanner.next();
+						read_file = read_file.concat(".txt");
+								try(FileReader fr=new FileReader(read_file);
+						BufferedReader br=new BufferedReader(fr);
+						){
+					String s=null;
+					System.out.println("Message from the file is ");
+					while((s=br.readLine())!=null) {
+						System.out.println(s);
+					}
+				} catch (FileNotFoundException e) {
+					System.out.println("file not found in the directory");
+				} catch (IOException e) {
+					System.out.println(e);
+				}
+				break;
+				
 				case 0:System.out.println("Thank you for using our app!!");
 				break;
+				
 				}
 				
 				
