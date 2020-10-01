@@ -23,6 +23,7 @@ import java.io.FileWriter;
 			System.out.println("developed by simplylearn.\tquality is our priority\n");
 			
 			do {
+				System.out.println("MENU OPTIONS ");
 				System.out.println("press 1 for file insertion");
 				System.out.println("press 2 for file deletion ");
 				System.out.println("press 3 to view the files");
@@ -52,21 +53,32 @@ import java.io.FileWriter;
 					System.out.println("directory is empty");
 				} 
 				Arrays.sort(pathnames);
-				int ch = Arrays.binarySearch(pathnames, filename);
-				if(ch>0)
-					System.out.println("please enter another name");
-				else {
+				for(String var:pathnames) {
+					if(var.equalsIgnoreCase(filename)){
+						System.out.println("file already exist ,please enter another name");
+						filename =scanner.next() ;
+						filename = filename.concat(".txt");
+						break;
+					}
+					
+				}
+				
+				//int ch = Arrays.binarySearch(pathnames, filename);
+			//	if(ch>0)
+			//		System.out.println("file already exist ,please enter another name");
+				
 					   try(FileWriter fw=new FileWriter(filename);
 									
 									BufferedWriter bw=new BufferedWriter(fw);
 									){
 								System.out.println("your file created successfully");
 								System.out.println("enter the data to be written on file  ");
-								String inputString;
+								String inputString = null;
+								
+								
 								inputString = scanner.next();
 								 bw.write(inputString);
 								
-							
 							
 								System.out.println("Messages written to file successfully");
 								
@@ -76,12 +88,12 @@ import java.io.FileWriter;
 							catch (IOException e) {
 								System.out.println(e);
 							}
-					   
-						
-				}
+					   break;
+					
+					
 				   
 					
-				break;
+				
 				  
 				
 				case 2 :System.out.println("enter the name of the file to be deleted");
@@ -105,7 +117,7 @@ import java.io.FileWriter;
 				break;
 			
 				
-				case 3:System.out.println("display the files in ascending order");
+				case 3:System.out.println("display the files ");
 						File my_file_dire = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");
 						String pathnames1 [];
 
@@ -148,7 +160,7 @@ import java.io.FileWriter;
 							break;
 						}
 						else {
-							System.out.println("not found");
+							System.out.println(" file not found");
 							break;
 						}
 					
