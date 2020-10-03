@@ -2,9 +2,10 @@ package file_handling;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.Iterator;
-import java.util.List;
+
 import java.util.Scanner;
+
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,6 +35,7 @@ import java.io.FileWriter;
 				System.out.println("press 0 to exit the application ");
 				System.out.println("press 5 to view the contents of file");
 				System.out.println("press 6 to continue");
+				
 					try {
 					c =scanner.nextInt();
 				
@@ -44,9 +46,14 @@ import java.io.FileWriter;
 					
 								
 				switch (c) {
+				//file creation
 				case 1 : 
-				System.out.println("enter the name of file to be created");	
+				
 				String filename;
+				int temp;
+				do {
+					 temp=0 ;
+				System.out.println("enter the name of file to be created");	
 				filename =scanner.next() ;
 				filename = filename.concat(".txt");
 				System.out.println(filename);
@@ -58,44 +65,48 @@ import java.io.FileWriter;
 					System.out.println("directory is empty");
 				} 
 				Arrays.sort(pathnames);
+				
+				
 				for(String var:pathnames) {
 					if(var.equalsIgnoreCase(filename)){
 						System.out.println("file already exist ,please enter another name");
-						filename =scanner.next() ;
-						filename = filename.concat(".txt");
-						break;
-					}
+						
 					
+						temp =1;
+						break;
+						
+					}
 				}
-				
-				
-				
+				}while(temp ==1);
+					
 					   try(FileWriter fw=new FileWriter(filename);
 									
 									BufferedWriter bw=new BufferedWriter(fw);
 									){
 								System.out.println("your file created successfully");
-								System.out.println("enter the data to be written on file  ");
+								System.out.println("enter the data to be written on file .Press EXIT to stop writing  ");
 								String inputString = null;
 								
-								
+								while(true) {
 								inputString = scanner.next();
-								
-								 bw.write(inputString);
-								
+								if(inputString.equals("EXIT"))
+									 break;
+								bw.write(inputString);
+								}
 								
 								System.out.println("Messages written to file successfully");
 								
-								
-								
 							}
 							catch (IOException e) {
-								System.out.println(e);
+								System.out.println("please input data");
 							}
+					
 					   break;
 					
 				
-				case 2 :System.out.println("enter the name of the file to be deleted");
+				case 2 :
+					//file deletion
+					System.out.println("enter the name of the file to be deleted");
 				try {
 				String fn = scanner.next();
 				fn = fn.concat(".txt");
@@ -120,8 +131,6 @@ import java.io.FileWriter;
 						}
 					
 				   }
-				
-				
 				
 				}catch (Exception e) {
 					System.out.println(e);
@@ -197,22 +206,35 @@ import java.io.FileWriter;
 						){
 					String s=null;
 					System.out.println("Message from the file is ");
+					
 					while((s=br.readLine())!=null) {
+						
 						System.out.println(s);
+						
 					}
-				} catch (FileNotFoundException e) {
+					
+				
+					}
+				catch (FileNotFoundException e) {
 					System.out.println("file not found in the directory");
 				} catch (IOException e) {
 					System.out.println(e);
+				}catch (NullPointerException e) {
+					System.out.println("no more files in the direcotry..");
 				}
+								
+				
 				break;
+								
 				
 				case 0:System.out.println("Thank you for using our app!!");
 				break;
+				default:System.out.println("please review your input ");
+				break;
 				
 				}
 				
-				
+			
 				
 				
 			} while(c!=0);
