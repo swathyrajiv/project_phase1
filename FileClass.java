@@ -23,7 +23,7 @@ import java.io.FileWriter;
 			Scanner scanner = new Scanner(System.in);
 		
 			int  c = 0;
-			System.out.println("\tWelcome to FMS 1.0");
+			System.out.println("\tWelcome to LockedMe.com FMS 1.0");
 			System.out.println("developed by simplylearn.\tquality is our priority\n");
 			
 			do {
@@ -57,7 +57,7 @@ import java.io.FileWriter;
 				filename =scanner.next() ;
 				filename = filename.concat(".txt");
 				System.out.println(filename);
-				File my_file_dir = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");
+				File my_file_dir = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");//specify the path
 				String pathnames[] = null;;
 				try {
 				pathnames = my_file_dir.list();
@@ -84,12 +84,12 @@ import java.io.FileWriter;
 									BufferedWriter bw=new BufferedWriter(fw);
 									){
 								System.out.println("your file created successfully");
-								System.out.println("enter the data to be written on file .Press EXIT to stop writing  ");
+								System.out.println("enter the data to be written on file ,type EXIT to stop writing  ");
 								String inputString = null;
 								
 								while(true) {
 								inputString = scanner.next();
-								if(inputString.equals("EXIT"))
+								if(inputString.equalsIgnoreCase("EXIT"))
 									 break;
 								bw.write(inputString);
 								}
@@ -111,7 +111,7 @@ import java.io.FileWriter;
 				String fn = scanner.next();
 				fn = fn.concat(".txt");
 				
-				File myObj = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file"); 
+				File myObj = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");//specify the path 
 				
 					String path[];
 				   if (myObj.exists()) {
@@ -122,7 +122,7 @@ import java.io.FileWriter;
 							
 							 myObj = new File(fn); 
 							myObj.delete();
-							System.out.println("file found in the  directory ,deleted the file."+myObj.getName());
+							System.out.println("file found in the  directory ,deleted the file"+myObj.getName());
 							break;
 						}
 						else {
@@ -139,7 +139,7 @@ import java.io.FileWriter;
 			
 				
 				case 3:System.out.println("display the files ");
-						File my_file_dire = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");
+						File my_file_dire = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");//specify the path
 						String pathnames1 [];
 
 							if (my_file_dire.exists()) 
@@ -170,7 +170,7 @@ import java.io.FileWriter;
 						search_key = search_key.concat(".txt");
 						
 						
-				File my_file_direc = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");
+				File my_file_direc = new File("/Users/bijithmp/Desktop/phase_1/phase_1_file");//specify the path
 				String path_name [];
 				
 				 
